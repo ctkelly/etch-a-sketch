@@ -1,0 +1,21 @@
+.new-grid-btn {
+  margin: auto;
+}
+
+.container {
+  display: grid;
+  /*grid-template-columns: repeat(16, 6.25%);
+  grid-template-rows: auto auto auto auto;*/
+  margin: auto;
+  height: 500px;
+  width: 500px;
+  background-color: white;
+  
+}
+ .cell {
+   border: 1px solid lightgray;
+ }
+
+ .highlight {
+   background-color: lightgreen;
+ }
