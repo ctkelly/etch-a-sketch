@@ -1,5 +1,5 @@
 .new-grid-btn {
-  margin: auto;
+  margin: auto; /* Need to center */
 }
 
 .container {
@@ -16,6 +16,6 @@
    border: 1px solid lightgray;
  }
 
- .highlight {
+ /*.highlight {
    background-color: lightgreen;
- }
+ }*/
