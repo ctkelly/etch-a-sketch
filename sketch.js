@@ -1,11 +1,19 @@
 //Set-up
 let container = document.querySelector(".container");
 
-let gridBtn = document.querySelectorAll("button");
+let gridBtn = document.querySelectorAll("button"); //Need to change to just the one button of id "new-grid-btn"
 
 gridBtn.forEach((button) => { //Is there a singular form of "forEach"-- seems wrong to use forEach for only one button
-  button.addEventListener("click", sketch);
+  button.addEventListener("click", sketch); 
 });
+
+//Add event listener for 2nd "clear" button
+/*let clearBtn = document.getElementById("clear");
+
+clearBtn.forEach((btn) => {
+  btn.addEventListener("click", clearColors);
+});*/
+
 
 //Function for user to input the number of squares for grid sides ORIGINAL
 /*function userInput() {
@@ -13,16 +21,16 @@ gridBtn.forEach((button) => { //Is there a singular form of "forEach"-- seems wr
   return parseInt(input);
 }*/
 
-//Function to refresh the page for the next grid.  NEED THIS???
+//Function to refresh the page for the next grid.  WORKS.  USE THIS ONE?
 /*function refreshPage() {
   window.location.reload();
 }*/ 
 
 //Function to clear the previous grid. WORKS, BUT DOESN'T REFRESH THE PAGE. NEW GRID WON'T APPEAR AFTER THE PROMPT.
-function clearGrid() {
-  let previousGrid = document.querySelector("div");
+/*function clearGrid() {
+  let previousGrid = document.querySelectorAll("div");
   previousGrid.remove();
-}
+}*/ 
 
 //Function to clear previous grid EXP 2.  NO.
 /*function clearGrid() {
@@ -36,7 +44,16 @@ function clearGrid() {
   previousFill.remove();
 }*/
 
-//EXP 4 ???
+//EXP 4. NO.
+/*function clearGrid() {
+  container.cell.remove("div");
+}*/
+
+//Function to clear the grid and set all cells to white -- to use with a 2nd button called "clear". WORKS.
+function clearColors() {
+  let gridColors = container.querySelectorAll("div");
+  gridColors.forEach(gridColor => gridColor.style.backgroundColor = "#ffffff");
+} 
 
 
 //Function for user to input the number of squares for grid sides with limit of 100.  WORKS!  How can I make it keep asking for new input if the user keeps putting in the wrong number?
@@ -88,7 +105,7 @@ function sketch() {
   function calcCellSize() {
     return 100 / gridSize;
   }
-   
+
   let cellSize = calcCellSize();
 
   container.style.gridTemplateRows = `repeat(${gridSize}, ${cellSize}%)`;
