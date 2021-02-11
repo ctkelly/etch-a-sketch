@@ -1,62 +1,20 @@
 //Set-up
 let container = document.querySelector(".container");
 
-let gridBtn = document.querySelectorAll("button"); //Need to change to just the one button of id "new-grid-btn"
+let gridBtn = document.querySelector("#new-grid-btn");
+gridBtn.addEventListener("click", sketch); 
 
-gridBtn.forEach((button) => { //Is there a singular form of "forEach"-- seems wrong to use forEach for only one button
-  button.addEventListener("click", sketch); 
-});
+let clearBtn = document.querySelector("#clear");
+clearBtn.addEventListener("click", clearColors);
 
-//Add event listener for 2nd "clear" button
-/*let clearBtn = document.getElementById("clear");
-
-clearBtn.forEach((btn) => {
-  btn.addEventListener("click", clearColors);
-});*/
-
-
-//Function for user to input the number of squares for grid sides ORIGINAL
-/*function userInput() {
-  let input = prompt("Choose a grid size");
-  return parseInt(input);
-}*/
-
-//Function to refresh the page for the next grid.  WORKS.  USE THIS ONE?
-/*function refreshPage() {
-  window.location.reload();
-}*/ 
-
-//Function to clear the previous grid. WORKS, BUT DOESN'T REFRESH THE PAGE. NEW GRID WON'T APPEAR AFTER THE PROMPT.
-/*function clearGrid() {
-  let previousGrid = document.querySelectorAll("div");
-  previousGrid.remove();
-}*/ 
-
-//Function to clear previous grid EXP 2.  NO.
-/*function clearGrid() {
-  let previousGrid = document.getElementsByName("cell");
-  previousGrid.remove();
-}*/
-
-//Function to clear the HIGHLIGHT. EXP 3. NO.
-/*function clear() {
-  let previousFill = document.getElementsByClassName("highlight");
-  previousFill.remove();
-}*/
-
-//EXP 4. NO.
-/*function clearGrid() {
-  container.cell.remove("div");
-}*/
 
 //Function to clear the grid and set all cells to white -- to use with a 2nd button called "clear". WORKS.
 function clearColors() {
-  let gridColors = container.querySelectorAll("div");
+  let gridColors = container.querySelectorAll(".cell");
   gridColors.forEach(gridColor => gridColor.style.backgroundColor = "#ffffff");
 } 
 
-
-//Function for user to input the number of squares for grid sides with limit of 100.  WORKS!  How can I make it keep asking for new input if the user keeps putting in the wrong number?
+//Function for user to input the number of squares for grid sides with limit of 100.  Improvement: make it keep asking for new input if the user keeps putting in the wrong number.
 function userInput() {
   let input = prompt("Choose a grid size");
   if (input >= 101) {
@@ -78,7 +36,7 @@ function calcCellSize() {
   cell.classList.add("highlight");
 }*/
 
-//Function to fill cell with random background color on mouseover EXP.  WORKS!!!
+//Function to fill cell with random background color on mouseover
 function highlightCell(event) {
   let cell = event.target;
   let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -97,10 +55,18 @@ function makeGrid(size) {
   }
 }
 
+//Function to remove divs from previous grid before making the new grid
+function removeCells() {
+  let cells = document.querySelectorAll(".cell");
+  cells.forEach(cell => cell.remove());
+} 
+
 //Function that combines smaller functions into big fx called sketch(), which is called with button click
 function sketch() {
   
   let gridSize = userInput();
+
+  removeCells();
 
   function calcCellSize() {
     return 100 / gridSize;
